@@ -1,0 +1,41 @@
+Question 1: What happens if users choose "Cancel"?
+If you run the original code from Figure 28 and the user clicks the "Cancel" button (or closes the dialog window), the program will print: "You've chosen: No".
+Why this happens:
+
+The showConfirmDialog method returns an integer representing the user's choice. If they click "Cancel", it returns JOptionPane.CANCEL_OPTION (which evaluates to the integer 2).
+Your output statement uses a ternary operator: (option == JOptionPane.YES_OPTION ? "Yes" : "No").
+Because 2 does not equal JOptionPane.YES_OPTION (which is 0), the condition is false, and it defaults to printing the second string: "No".
+
+Question 2: How to customize the options to users?
+Customize the dialog boxes by using overloaded versions of the JOptionPane methods.
+
+Here is how we can achieve the specific customizations requested:
+
+1. Show only "Yes" and "No" options:
+We need to pass JOptionPane.YES_NO_OPTION as a parameter to the showConfirmDialog method.
+
+Java
+int option = JOptionPane.showConfirmDialog(null, 
+    "Do you want to change to the first class ticket?", 
+    "Confirmation", 
+    JOptionPane.YES_NO_OPTION);
+2. Show custom text like "I do" and "I don't":
+To use entirely custom text on the buttons, you have to switch from showConfirmDialog to showOptionDialog. This method allows you to pass an array of Objects (usually Strings) to define the buttons.
+
+Java
+Object[] options = {"I do", "I don't"};
+int option = JOptionPane.showOptionDialog(null,
+    "Do you want to change to the first class ticket?",
+    "Custom Confirmation",
+    JOptionPane.YES_NO_OPTION,
+    JOptionPane.QUESTION_MESSAGE,
+    null,     // Don't use a custom icon
+    options,  // The array of strings for the buttons
+    options[0]); // The default button selection ("I do")
+
+// Update the output logic to match the new array indexes
+if (option == 0) {
+    JOptionPane.showMessageDialog(null, "You've chosen: I do");
+} else if (option == 1) {
+    JOptionPane.showMessageDialog(null, "You've chosen: I don't");
+}
