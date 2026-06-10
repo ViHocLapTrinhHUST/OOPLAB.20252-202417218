@@ -2,6 +2,7 @@ package hust.soict.globalict.aims.screen.manager;
 
 import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.media.Playable;
+import hust.soict.globalict.aims.exception.PlayerException;
 import java.awt.*;
 import javax.swing.*;
 
@@ -25,13 +26,18 @@ public class MediaStore extends JPanel {
         if (media instanceof Playable) {
             JButton playButton = new JButton("Play");
             playButton.addActionListener(e -> {
-                JDialog dialog = new JDialog();
-                dialog.setTitle("Playing Media");
-                dialog.setSize(300, 150);
-                dialog.setLayout(new BorderLayout());
-                dialog.add(new JLabel("Playing: " + media.getTitle(), SwingConstants.CENTER), BorderLayout.CENTER);
-                dialog.setLocationRelativeTo(null);
-                dialog.setVisible(true);
+                try {
+                    ((Playable) media).play();
+                    JDialog dialog = new JDialog();
+                    dialog.setTitle("Playing Media");
+                    dialog.setSize(300, 150);
+                    dialog.setLayout(new BorderLayout());
+                    dialog.add(new JLabel("Playing: " + media.getTitle(), SwingConstants.CENTER), BorderLayout.CENTER);
+                    dialog.setLocationRelativeTo(null);
+                    dialog.setVisible(true);
+                } catch (PlayerException ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Illegal DVD Length", JOptionPane.ERROR_MESSAGE);
+                }
             });
             container.add(playButton);
         }

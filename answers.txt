@@ -12,3 +12,8 @@
 4. Compare the resulting appearances:
 - AWT: Components are "heavyweight" and rely on the underlying operating system's native GUI peers. Therefore, an AWT application will look different across different OS platforms (Windows, macOS, Linux).
 - Swing: Components are "lightweight" and are drawn entirely by Java. This ensures a consistent appearance (look and feel) across all platforms.
+
+--- LAB 05 ANSWERS ---
+
+Question (Section 11): The Aims class must be updated to handle any exceptions generated when the play() methods are called. What happens when you don't update for them to catch?
+Answer: Since PlayerException extends java.lang.Exception, it is a checked exception. If we do not update the code to catch it (using a try-catch block) or declare it to be thrown (using the throws keyword), the Java compiler will throw a compilation error: 'unreported exception PlayerException; must be caught or declared to be thrown'. The program will fail to compile.

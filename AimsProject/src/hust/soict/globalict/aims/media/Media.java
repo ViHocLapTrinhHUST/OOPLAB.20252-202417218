@@ -1,6 +1,6 @@
 package hust.soict.globalict.aims.media;
 import java.util.Comparator;
-public abstract class Media {
+public abstract class Media implements Comparable<Media> {
     private int id;
     private String title;
     private String category;
@@ -24,10 +24,23 @@ public abstract class Media {
     @Override
     public boolean equals(Object obj) {
         if (obj == this) return true;
-        if (!(obj instanceof Media)) return false;
-        Media media = (Media) obj;
-        return this.title != null && this.title.equals(media.getTitle());
+        if (obj == null) return false;
+        try {
+            Media media = (Media) obj;
+            return this.title != null && this.title.equals(media.getTitle()) && this.cost == media.getCost();
+        } catch (ClassCastException e) {
+            return false;
+        }
     }
+    
+    @Override
+    public int compareTo(Media other) {
+        if (other == null) throw new NullPointerException("Cannot compare to null");
+        int titleCompare = this.title.compareTo(other.getTitle());
+        if (titleCompare != 0) return titleCompare;
+        return Float.compare(this.cost, other.getCost());
+    }
+
     @Override
     public String toString() {
         return "Media - " + title + " - " + category + " - " + cost + " $";
