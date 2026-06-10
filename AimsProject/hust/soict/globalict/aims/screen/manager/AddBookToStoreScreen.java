@@ -1,4 +1,4 @@
-package hust.soict.dsai.aims.screen.manager;
+package hust.soict.globalict.aims.screen.manager;
 
 import hust.soict.globalict.aims.media.Book;
 import hust.soict.globalict.aims.store.Store;
@@ -25,7 +25,9 @@ public class AddBookToStoreScreen extends AddItemToStoreScreen {
             Book newBook = new Book(tfTitle.getText(), tfCategory.getText(), Float.parseFloat(tfCost.getText()));
             store.addMedia(newBook);
             JOptionPane.showMessageDialog(this, "Book added successfully!");
-            tfTitle.setText(""); tfCategory.setText(""); tfCost.setText("");
+            tfTitle.setText("");
+            tfCategory.setText("");
+            tfCost.setText("");
         });
         centerPanel.add(btnAdd);
     }

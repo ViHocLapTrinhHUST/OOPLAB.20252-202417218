@@ -1,4 +1,4 @@
-package hust.soict.dsai.swing;
+package hust.soict.globalict.swing;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

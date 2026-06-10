@@ -1,4 +1,4 @@
-package hust.soict.dsai.aims.screen.manager;
+package hust.soict.globalict.aims.screen.manager;
 
 import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.media.Playable;
